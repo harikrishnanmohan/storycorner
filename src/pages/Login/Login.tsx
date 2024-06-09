@@ -27,7 +27,7 @@ const Login = () => {
             uid: data.user.uid,
           };
           UserCtx?.login(userData);
-          navigate("/storycorner");
+          navigate("/storycorner/");
         }
       })
       .catch((error) => console.log(error));

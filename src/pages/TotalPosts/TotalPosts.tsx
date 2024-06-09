@@ -205,7 +205,7 @@ const TotalPosts = () => {
       <div className="totalPosts">
         <Button
           type="button"
-          handleFunction={() => navigate("/storycorner")}
+          handleFunction={() => navigate("/storycorner/")}
           addClass={`totalPosts__back ${isBackButtonVisible ? "visible" : ""}`}
         >
           <FontAwesomeIcon icon={faArrowLeft} title="Go back" />
@@ -240,7 +240,7 @@ const TotalPosts = () => {
               Join the Conversation! - There are no posts yet. Share your
               thoughts and be the first to post.
               <Button
-                handleFunction={() => navigate("/storycorner")}
+                handleFunction={() => navigate("/storycorner/")}
                 type="button"
                 addClass="goHome-button"
               >
