@@ -1,0 +1,58 @@
+@import "../../style/typography.scss";
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 4rem;
+  background: $primary-color;
+  font-family: "Kalam";
+  position: sticky;
+  top: 0;
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+  &__title {
+    font-weight: 400;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  &__action {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    &_button {
+      padding: 0.18rem 1rem;
+    }
+    &_font {
+      cursor: pointer;
+    }
+  }
+  &.header-hidden {
+    transform: translateY(-100%);
+  }
+  &.header-visible {
+    transform: translateY(0);
+  }
+}
+.svg-inline--fa.fa-arrow-right-from-bracket {
+  cursor: pointer;
+}
+
+.app__dark {
+  .header {
+    background: $secondary-bg-color;
+  }
+}
+
+@media (max-width: 445px) {
+  .header {
+    padding: 0.75rem 1rem;
+    &__action {
+      gap: 1rem;
+    }
+  }
+}
+@media (max-width: 995px) {
+  .header {
+    padding: 0.75rem 1.5rem;
+  }
+}

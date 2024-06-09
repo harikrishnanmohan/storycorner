@@ -1,0 +1,64 @@
+@import "../../style/typography.scss";
+.skeleton {
+  &__recent {
+    width: calc(100% - 2rem);
+    background: $primary-color;
+    padding: 1rem;
+    border-radius: $border-radius-10;
+    &_title {
+      width: 100%;
+      height: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    &_postOne {
+      width: 70%;
+      height: 2rem;
+      margin-bottom: 1rem;
+    }
+    &_postTwo {
+      width: 100%;
+      height: 2rem;
+    }
+  }
+}
+.recent {
+  background: $primary-color;
+  padding: 1rem;
+  border-radius: $border-radius-10;
+  &__title {
+    font-weight: 400;
+    font-size: 14px;
+  }
+  &__posts {
+    margin-top: 2rem;
+    font-size: 13px;
+    &_item {
+      margin-bottom: 0.75rem;
+      cursor: pointer;
+      opacity: 0.7;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}
+.app__dark {
+  .recent {
+    background: $secondary-bg-color;
+  }
+  .skeleton {
+    &__recent {
+      background: $secondary-bg-color;
+    }
+  }
+}
+@media (max-width: 445px) {
+  .recent {
+    display: none;
+  }
+}
+@media (max-width: 995px) {
+  .recent {
+    display: none;
+  }
+}

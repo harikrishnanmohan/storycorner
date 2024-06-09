@@ -1,0 +1,88 @@
+@import "../../style/typography.scss";
+.login {
+  display: flex;
+  justify-content: space-around;
+  height: 87vh;
+  align-items: center;
+  &__welcome {
+    width: 40rem;
+    &_title {
+      margin-bottom: 1rem;
+      font-weight: 300;
+      font-size: clamp(2rem, 3vw, 4rem);
+    }
+    &_description {
+      margin-bottom: 1rem;
+      font-size: 20px;
+      font-weight: 300;
+    }
+    &_subTitle {
+      font-size: 30px;
+      font-weight: 300;
+      display: inline-block;
+      margin-right: 2rem;
+    }
+  }
+  &__section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &_button {
+      width: 10rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+  }
+}
+
+@media (max-width: 995px) {
+  .login {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &__container {
+      width: 70%;
+    }
+    &__welcome {
+      width: 100%;
+    }
+    &__section {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 445px) {
+  .login {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &__container {
+      width: 100%;
+    }
+    &__welcome {
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      margin: 1rem;
+    }
+    &__section {
+      flex-direction: column;
+      margin-top: 1rem;
+      width: 100%;
+      justify-content: center;
+      &_button {
+        margin-top: 2rem;
+        width: 90%;
+      }
+      &_subTitle {
+        align-self: flex-start;
+        margin-left: 1rem;
+      }
+    }
+  }
+}

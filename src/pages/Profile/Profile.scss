@@ -1,0 +1,133 @@
+@import "../../style/typography.scss";
+.skeleton {
+  &__profile {
+    width: calc(100% - 2rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: space-around;
+    background: $primary-color;
+    border-radius: $border-radius-10;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    &__picture.skeleton {
+      width: 6rem;
+      height: 6rem;
+      border-radius: 50%;
+    }
+    &__name.skeleton,
+    &__post.skeleton {
+      width: 90%;
+      height: 2rem;
+      border-radius: $border-radius-10;
+    }
+  }
+}
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  background: $primary-color;
+  padding: 1rem;
+  border-radius: $border-radius-10;
+  margin-bottom: 1rem;
+  position: relative;
+  &.bg-image {
+    background-image: url("../../assets/grey_background.jpg");
+    background-size: cover;
+  }
+  &__name {
+    font-size: 17px;
+  }
+  &__back {
+    position: absolute;
+    left: 1rem;
+    background: transparent;
+    color: $dark;
+    font-size: 20px;
+  }
+  &__picture {
+    width: 6rem;
+    height: 6rem;
+    object-fit: contain;
+    border-radius: $border-radius-50-per;
+    padding: 0.25rem;
+    // background: linear-gradient(white, white) padding-box,
+    //   linear-gradient(to right, #333, #8f8f8f) border-box;
+    border: 2px solid $dark;
+  }
+  &__post {
+    border-top: 1px solid $border-primary-grey;
+    width: 100%;
+    &_count {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      font-size: 14px;
+      &.left-align {
+        justify-content: flex-start;
+        gap: 2rem;
+      }
+    }
+
+    padding-top: 1rem;
+  }
+}
+.app__dark {
+  .profile {
+    background: $secondary-bg-color;
+    &.bg-image {
+      background-image: url("../../assets/grey_background.jpg");
+      background-size: cover;
+    }
+    &__back {
+      background: transparent;
+      color: $light;
+    }
+    &__picture {
+      border-color: $light;
+    }
+    &__post {
+      border-color: $border-secondary-grey;
+    }
+  }
+  .skeleton {
+    &__profile {
+      background: $secondary-bg-color;
+    }
+  }
+}
+@media (max-width: 995px) {
+  .profile {
+    &__post {
+      &_count.left-align {
+        justify-content: space-between;
+      }
+    }
+  }
+}
+@media (max-width: 445px) {
+  .app__dark {
+    .profile {
+      margin-top: -1rem;
+      &.bg-image {
+        background-image: none;
+      }
+    }
+  }
+  .profile {
+    margin-top: -1rem;
+    &.bg-image {
+      background-image: none;
+    }
+    &__post {
+      &_count.left-align {
+        justify-content: space-between;
+      }
+    }
+  }
+}

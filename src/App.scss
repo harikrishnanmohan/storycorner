@@ -1,0 +1,104 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap");
+@import "./style/typography.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ff0000;
+}
+
+.app {
+  min-height: 100vh;
+  background-color: $primary-bg-color;
+  &__dark {
+    background-color: $secondary-color;
+    color: $primary-color;
+  }
+  &__handWriting {
+    font-family: Kalam;
+    line-height: 1.46;
+    input,
+    button,
+    textarea {
+      font-family: Kalam;
+    }
+  }
+  &__typeWriting {
+    font-family: "Open Sans", sans-serif;
+    input,
+    button,
+    textarea {
+      font-family: "Open Sans", sans-serif;
+    }
+  }
+  &__top {
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    position: fixed;
+    z-index: 1000;
+    bottom: -6rem;
+    right: 6rem;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    font-size: 20px;
+    &.button {
+      background: $secondary-bg-color;
+      color: $light;
+    }
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    &.visible {
+      opacity: 1;
+      bottom: 6rem;
+    }
+  }
+}
+.modal {
+  &__handWriting {
+    font-family: Kalam;
+    line-height: 1.46;
+    input,
+    button,
+    textarea {
+      font-family: Kalam;
+    }
+    line-height: 1.46;
+  }
+  &__typeWriting {
+    font-family: "Open Sans", sans-serif;
+    input,
+    button,
+    textarea {
+      font-family: "Open Sans", sans-serif;
+    }
+  }
+}
+@media (max-width: 995px) {
+  .app {
+    &__top {
+      right: 1rem;
+      &.visible {
+        bottom: 2rem;
+      }
+    }
+  }
+}
+@media (max-width: 445px) {
+  .app {
+    &__top {
+      display: none;
+    }
+  }
+}

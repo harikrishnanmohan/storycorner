@@ -1,0 +1,346 @@
+@import "../../style/typography.scss";
+
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: pulse 1.5s infinite ease-in-out;
+  border-radius: 4px;
+  &-story {
+    margin-top: 1rem;
+    display: flex;
+    padding: 1rem;
+    border-radius: $border-radius-10;
+    background: $primary-color;
+  }
+  &__image {
+    width: 15rem;
+    height: 12rem;
+    border-radius: $border-radius-10;
+  }
+  &__story {
+    &__description {
+      width: 100%;
+      margin-left: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      &_title {
+        width: 100%;
+        height: 3rem;
+        border-radius: $border-radius-10;
+        margin-bottom: 1.5rem;
+      }
+      &_post {
+        width: 100%;
+        height: 10rem;
+        border-radius: $border-radius-10;
+      }
+      &_author {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin-top: 1.5rem;
+        &-information {
+          display: flex;
+          width: 50%;
+          &-picture {
+            width: 2.5rem;
+            height: 2rem;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+          }
+          &-name {
+            width: 100%;
+            height: 2rem;
+            border-radius: $border-radius-10;
+          }
+        }
+      }
+      &_about {
+        &-interaction {
+          width: 30%;
+          display: flex;
+          justify-content: flex-end;
+          gap: 1rem;
+          align-items: center;
+          border-radius: $border-radius-10;
+        }
+      }
+    }
+  }
+}
+
+@keyframes pulse {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.story {
+  padding: 1rem;
+  border-radius: $border-radius-10;
+  background: $primary-color;
+  margin-bottom: 1rem;
+  display: flex;
+  gap: 3rem;
+  transition: display 0.75s;
+  &__left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__block {
+    display: block;
+  }
+  &__image {
+    width: 15rem;
+    height: 12rem;
+    object-fit: cover;
+    border-radius: $border-radius-20;
+    transition: all 0.75s;
+    padding: 0.5rem;
+    &_scalDown {
+      width: 0;
+      height: 0;
+      opacity: 0;
+    }
+  }
+  &__description {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    gap: 2rem;
+    &_about {
+      &-header {
+        justify-content: space-between;
+      }
+    }
+    &_image {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      border-radius: $border-radius-10;
+      &-container {
+        height: 20rem;
+        width: 100%;
+        overflow: hidden;
+        margin-bottom: 2rem;
+      }
+    }
+    &_title {
+      font-weight: 400;
+      font-size: clamp(1.1rem, 3vw, 1.75rem);
+      margin-bottom: 1rem;
+    }
+    &_post {
+      font-weight: 400;
+      line-height: 2;
+      white-space: pre-wrap;
+      font-size: 16px;
+      &-button {
+        opacity: 0.5;
+        margin-left: 0.25rem;
+        background: none;
+        color: $dark;
+        padding: 0;
+      }
+    }
+    &_author {
+      display: flex;
+      justify-content: space-between;
+      &-information {
+        display: flex;
+        flex-direction: row;
+        gap: 0.5rem;
+        align-items: center;
+        &-picture {
+          width: 1.75rem;
+          height: 1.75rem;
+        }
+        &-name {
+          font-weight: 400;
+          font-size: 16px;
+        }
+        &-part1 {
+          display: flex;
+          align-items: flex-start;
+          gap: 0.25rem;
+          flex-direction: column;
+        }
+        &-date {
+          font-size: 11px;
+        }
+      }
+    }
+    &_about {
+      &-header {
+        display: flex;
+        &-tablet {
+          display: none;
+        }
+      }
+      &-interaction {
+        display: flex;
+        gap: 2rem;
+        font-size: 0.75rem;
+        align-items: center;
+        .delete {
+          font-size: 1rem;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+.deleteConfirmation {
+  &_modal {
+    width: 30%;
+    padding: 2rem;
+  }
+  &_question {
+    margin-bottom: 2rem;
+  }
+  &_button {
+    display: flex;
+    justify-content: flex-end;
+    gap: 2rem;
+  }
+}
+.app__dark {
+  .story {
+    background: $secondary-bg-color;
+    &__description {
+      &_post {
+        &-button {
+          background: none;
+          color: $light;
+        }
+      }
+    }
+  }
+  .skeleton {
+    opacity: 0.4;
+  }
+  .skeleton-story {
+    background: $secondary-bg-color;
+  }
+}
+
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.heartbeat {
+  animation: heartbeat 0.7s ease-in-out;
+}
+@media (max-width: 992px) {
+  .story {
+    flex-direction: column;
+    gap: 1.5rem;
+    &__left {
+      height: 15rem;
+      img {
+        width: 100%;
+        height: 100%;
+        opacity: 1;
+      }
+    }
+    &__description {
+      &_image {
+        &-container {
+          display: none;
+        }
+      }
+      &_about {
+        &-header {
+          display: none;
+          &-tablet {
+            display: flex;
+            justify-content: space-between;
+            .button.myStory__edit {
+              margin-left: 1.5rem;
+              margin-top: 0.75rem;
+            }
+          }
+        }
+      }
+      &_title {
+        margin: 0;
+      }
+    }
+    &__block {
+      display: flex;
+    }
+  }
+  .skeleton {
+    &-story {
+      flex-direction: column;
+      margin-top: 0;
+    }
+    &__image {
+      width: 100%;
+      height: 2rem;
+      margin-bottom: 1rem;
+    }
+    &__story {
+      &__description {
+        margin-left: 0;
+        &_title {
+          height: 10rem;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 445px) {
+  .story {
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 0.5rem;
+    &__image {
+      width: 100%;
+      padding: 0;
+    }
+    &__description {
+      &_author {
+        flex-direction: column;
+      }
+      &_post {
+        font-size: 15px;
+      }
+      &_about {
+        &-interaction {
+          margin-top: 1.5rem;
+          justify-content: space-between;
+        }
+        &-header {
+          &-tablet {
+            display: none;
+
+            display: flex;
+            justify-content: space-between;
+            .button.myStory__edit {
+              margin-left: 1.5rem;
+              margin-top: 0rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}

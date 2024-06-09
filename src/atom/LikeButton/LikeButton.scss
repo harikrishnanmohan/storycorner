@@ -1,0 +1,16 @@
+@import "../../style/typography.scss";
+.like {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  &-button {
+    color: $like-color-normal;
+    cursor: pointer;
+    font-size: 1.2rem;
+  }
+  &.clicked {
+    .like-button {
+      color: red;
+    }
+  }
+}

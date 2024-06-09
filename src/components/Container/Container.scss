@@ -1,0 +1,9 @@
+@import "../../style/typography.scss";
+.container {
+  background: $primary-color;
+  padding: 1rem;
+  border-radius: $border-radius-10;
+}
+.app__dark {
+  background-color: $secondary-bg-color;
+}

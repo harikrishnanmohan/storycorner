@@ -1,0 +1,65 @@
+@import "../../style//typography.scss";
+.themeToggle {
+  position: relative;
+  &_input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+  &_label {
+    display: block;
+    position: relative;
+    width: 50px;
+    height: 25px;
+    background-color: $light;
+    border-radius: $border-radius-30;
+    transition: 1s;
+    cursor: pointer;
+    &::before {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 0;
+      right: auto;
+      left: 0;
+      bottom: 0;
+      width: 25px;
+      height: 25px;
+      border-radius: $border-radius-100-per;
+      transition: 0.4s;
+      font-size: 15px;
+      font-weight: 900;
+      box-sizing: border-box;
+      padding-top: 3px;
+      content: "\263E";
+      background-color: $dark;
+      border: 2px $light solid;
+      color: $light;
+    }
+  }
+  &_input:checked + .themeToggle_label {
+    background-color: $dark;
+
+    &::before {
+      left: calc(100% - 25px);
+
+      content: "\2600";
+      background-color: $light;
+      border: 2px $dark solid;
+      color: $dark;
+    }
+  }
+}
+.app__light {
+  .themeToggle {
+    &_label {
+      background-color: $dark;
+    }
+  }
+}

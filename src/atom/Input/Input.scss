@@ -1,0 +1,17 @@
+@import "../../style/typography.scss";
+.input {
+  outline: none;
+  width: calc(100% - 2rem);
+  padding: 0.5rem 1rem;
+  border-radius: $border-radius-20;
+  border: none;
+  background-color: $primary-bg-color;
+  color: $dark;
+  font-size: 1rem;
+}
+.app__dark {
+  .input {
+    background: $dark;
+    color: $light;
+  }
+}

@@ -1,0 +1,29 @@
+@import "../../style/typography.scss";
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 4rem;
+  background: $primary-color;
+  &__portfolio {
+    color: $dark;
+    text-decoration: none;
+  }
+}
+.app__dark {
+  .footer {
+    background: $secondary-bg-color;
+    &__portfolio {
+      color: $light;
+    }
+  }
+}
+@media (max-width: 445px) {
+  .footer {
+    padding: 1.5rem 1rem;
+    align-items: flex-start;
+    &__link {
+      width: 50%;
+    }
+  }
+}

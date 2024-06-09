@@ -1,0 +1,24 @@
+@import "../../style/typography.scss";
+.modal {
+  border-radius: $border-radius-10;
+  margin: auto;
+  border: none;
+  width: 66vw;
+  &::backdrop {
+    background: rgba(0, 0, 0, 0.8);
+  }
+}
+.modal__dark {
+  background-color: $secondary-bg-color;
+  color: $light;
+}
+@media (max-width: 445px) {
+  .modal {
+    width: 100%;
+  }
+}
+@media (max-width: 995px) {
+  .modal {
+    width: 90%;
+  }
+}

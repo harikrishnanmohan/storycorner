@@ -1,0 +1,80 @@
+@import "../../style/typography.scss";
+.totalPosts {
+  min-height: 84vh;
+  width: 100%;
+  margin-bottom: 2rem;
+  position: relative;
+  &__noPost {
+    text-align: center;
+    .goHome-button {
+      margin-left: 2rem;
+    }
+  }
+  &__profile {
+    margin: 2rem;
+  }
+  &__posts {
+    margin: 2rem auto;
+    max-width: 70%;
+    .story {
+      margin-top: 1rem;
+    }
+  }
+  &__font {
+    flex: 1;
+    margin-top: 1rem;
+    margin-right: 2rem;
+  }
+  &__back {
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    position: fixed;
+    z-index: 1000;
+    top: 4rem;
+    left: -6rem;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    font-size: 20px;
+    &.button {
+      background: $secondary-bg-color;
+      color: $light;
+    }
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    &.visible {
+      opacity: 1;
+      left: 6rem;
+    }
+  }
+}
+.app__dark {
+  .totalPosts {
+    &__noPost {
+      background-color: $secondary-bg-color;
+    }
+  }
+}
+@media (max-width: 995px) {
+  .totalPosts {
+    padding: 0;
+    &__posts {
+      max-width: 100%;
+      margin: 2rem 2rem;
+    }
+    &__back.visible {
+      display: none;
+    }
+  }
+}
+@media (max-width: 445px) {
+  .totalPosts {
+    padding: 0;
+    &__posts {
+      max-width: 100%;
+      margin: 2rem 1rem;
+    }
+    &__back.visible {
+      display: none;
+    }
+  }
+}

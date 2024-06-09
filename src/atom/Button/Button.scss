@@ -1,0 +1,16 @@
+@import "../../style/typography.scss";
+.button {
+  padding: 0.5rem 1rem;
+  border-radius: $border-radius-10;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: $dark;
+  color: $light;
+}
+.app__dark {
+  .button {
+    background: $light;
+    color: $dark;
+  }
+}

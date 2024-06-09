@@ -1,0 +1,27 @@
+@import "../../style/typography.scss";
+.card {
+  &__picture {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: $border-radius-50-per;
+    border: 1px solid $dark;
+    padding: 0.1rem;
+  }
+  &__name {
+    font-weight: 500;
+    font-size: 18px;
+    width: max-content;
+  }
+  &__description {
+    opacity: 0.7;
+    width: max-content;
+    font-size: 15px;
+  }
+}
+.app__dark {
+  .card {
+    &__picture {
+      border: 1px solid $light;
+    }
+  }
+}

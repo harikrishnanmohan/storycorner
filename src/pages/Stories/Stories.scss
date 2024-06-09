@@ -1,0 +1,247 @@
+@import "../../style/typography.scss";
+
+.stories {
+  padding: 2rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  min-height: 80vh;
+  position: relative;
+  overflow: hidden;
+  &__right {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    width: 100%;
+  }
+  &__profile {
+    min-width: 15vw;
+    max-width: 15vw;
+    height: fit-content;
+  }
+  &__list {
+    width: 100%;
+  }
+  &__filters,
+  &__changeFont {
+    min-width: 15vw;
+    max-width: 15vw;
+    height: fit-content;
+    background: $primary-color;
+    border-radius: $border-radius-10;
+    padding: 1rem;
+  }
+  &__filters {
+    &_button {
+      display: none;
+    }
+    &_search {
+      margin-bottom: 2rem;
+    }
+    &_slider {
+      position: absolute;
+      right: -150%;
+      width: 300px;
+      transition: right 0.5s ease-in-out;
+      background: $light;
+      border-radius: $border-radius-10;
+      padding: 1rem;
+      top: 28vh;
+    }
+    &_items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      &-item {
+        padding: 0.5rem 1rem;
+        background: $primary-bg-color;
+        border-radius: 20px;
+        cursor: pointer;
+        opacity: 0.6;
+        &.selected {
+          border: 2px solid rgb(163, 162, 161);
+          opacity: 1;
+        }
+      }
+    }
+  }
+  &__changeFont {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    align-items: center;
+  }
+  &__newPost {
+    margin-bottom: 1rem;
+  }
+}
+.noPost {
+  &_modal {
+    width: 30%;
+    padding: 2rem;
+  }
+  &_question {
+    margin-bottom: 2rem;
+  }
+  &_button {
+    display: flex;
+    justify-content: flex-end;
+    gap: 2rem;
+  }
+}
+@keyframes slideDown {
+  from {
+    top: -100px;
+  }
+  to {
+    top: 10px;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    top: 10px;
+  }
+  to {
+    top: -100px;
+  }
+}
+.notification.slide-up {
+  animation: slideUp 0.5s forwards;
+}
+.notification {
+  cursor: pointer;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 40px;
+  z-index: 1000;
+  background: $dark;
+  animation: slideDown 0.5s forwards;
+  &-images {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  &-image_0,
+  &-image_1 {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    position: relative;
+  }
+  &-image_0 {
+    z-index: 1000;
+  }
+  &-image_1 {
+    margin-left: -2rem;
+    z-index: 999;
+  }
+}
+.app__dark {
+  .stories {
+    &__filters,
+    &__changeFont {
+      background: $secondary-bg-color;
+    }
+    &__filters {
+      &_slider {
+        background: $secondary-bg-color;
+      }
+      &_items {
+        &-item {
+          background: $dark;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 995px) {
+  .stories {
+    padding: 2rem;
+    flex-direction: column;
+    &__list {
+      display: flex;
+      flex-direction: column;
+    }
+    &__profile {
+      display: none;
+    }
+    &__filters {
+      display: none;
+      &_button {
+        display: block;
+        margin-bottom: 1rem;
+        align-self: flex-end;
+        font-size: 18px;
+        &.keyword {
+          color: rgb(132, 168, 78);
+        }
+      }
+      &_slider {
+        &.visible {
+          right: 2rem;
+          z-index: 1000;
+          display: block;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 445px) {
+  .stories {
+    flex-direction: column;
+    padding: 1rem 1rem;
+    padding-bottom: 0;
+    gap: 0;
+    &__right {
+      gap: 0;
+    }
+    &__profile {
+      width: 100%;
+    }
+    .recent {
+      display: none;
+    }
+    &__list {
+      width: 100%;
+    }
+    &__filters {
+      display: none;
+      &_slider {
+        &.visible {
+          right: 0;
+          width: calc(100% - 2rem);
+        }
+      }
+    }
+  }
+}
+
+.deleted {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  border-radius: 5px;
+  animation: fadeInOut 5s ease-in-out;
+  z-index: 1000;
+}
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  10%,
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
