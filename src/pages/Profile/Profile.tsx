@@ -36,7 +36,7 @@ const Profile = ({ isClickable }: { isClickable?: boolean }) => {
       collectionRef,
       where("authorId", "==", userCtx.user.uid)
     );
-
+    console.log(isClickable);
     const unsubscribe = onSnapshot(userPostsQuery, (snapshot) => {
       const newData: StoryListType[] = snapshot.docs.map((doc) => ({
         id: doc.id,
@@ -58,7 +58,7 @@ const Profile = ({ isClickable }: { isClickable?: boolean }) => {
     return () => {
       unsubscribe();
     };
-  }, [userCtx?.user?.uid]);
+  }, [isClickable, userCtx?.user?.uid]);
   if (isLoading) {
     return <SkeletonProfile />;
   }
@@ -95,9 +95,14 @@ const Profile = ({ isClickable }: { isClickable?: boolean }) => {
       <div className="profile__post" onClick={goToTotalPost}>
         <p
           className={`profile__post_count ${isClickable ? "" : " left-align"}`}
+          onClick={goToTotalPost}
         >
-          <span className="profile__post_count-label">My posts</span>
-          <span className="profile__post_count-value">{storyList.length}</span>
+          <span className="profile__post_count-label" onClick={goToTotalPost}>
+            My posts
+          </span>
+          <span className="profile__post_count-value" onClick={goToTotalPost}>
+            {storyList.length}
+          </span>
         </p>
       </div>
     </Container>

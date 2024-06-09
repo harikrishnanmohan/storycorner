@@ -76,5 +76,14 @@
     &__back.visible {
       display: none;
     }
+    &__noPost {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      .goHome-button {
+        margin-top: 2rem;
+        margin-left: 0rem;
+      }
+    }
   }
 }
