@@ -72,7 +72,7 @@ const Profile = ({ isClickable }: { isClickable?: boolean }) => {
       {!isClickable ? (
         <Button
           type="button"
-          handleFunction={() => navigate("/storycorner")}
+          handleFunction={() => navigate("/storycorner/")}
           addClass="profile__back"
         >
           <FontAwesomeIcon icon={faArrowLeft} />

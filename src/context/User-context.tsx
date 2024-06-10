@@ -1,4 +1,6 @@
-import { ReactNode, createContext, useState } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { ReactNode, createContext, useEffect, useState } from "react";
+import { auth } from "../firebaseConfig";
 
 export type FirebaseUser = {
   uid: string;
@@ -11,6 +13,7 @@ interface UserContextType {
   user: FirebaseUser | null;
   login: (user: FirebaseUser) => void;
   logout: () => void;
+  loading: boolean;
 }
 
 export const UserContext = createContext<UserContextType | undefined>(
@@ -19,6 +22,25 @@ export const UserContext = createContext<UserContextType | undefined>(
 
 const UserContextProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<FirebaseUser | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+      if (firebaseUser) {
+        const userData = {
+          displayName: firebaseUser.displayName!,
+          email: firebaseUser.email!,
+          photoURL: firebaseUser.photoURL!,
+          uid: firebaseUser.uid,
+        };
+        setUser(userData);
+      } else {
+        setUser(null);
+      }
+      setLoading(false);
+    });
+    return () => unsubscribe();
+  }, []);
 
   const login = (user: FirebaseUser) => {
     setUser(user);
@@ -28,7 +50,7 @@ const UserContextProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <UserContext.Provider value={{ user, login, logout }}>
+    <UserContext.Provider value={{ user, login, logout, loading }}>
       {children}
     </UserContext.Provider>
   );

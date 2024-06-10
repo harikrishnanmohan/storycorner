@@ -41,36 +41,6 @@ const TotalPosts = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  // useEffect(() => {
-  //   if (!userCtx?.user?.uid) return;
-
-  //   const fetchPosts = async () => {
-  //     const collectionRef = collection(fireStore, "posts");
-  //     const userPostsQuery = query(
-  //       collectionRef,
-  //       where("authorId", "==", userCtx?.user?.uid)
-  //     );
-  //     const snapshot = await getDocs(userPostsQuery);
-  //     const newData: StoryListType[] = snapshot.docs.map((doc) => ({
-  //       id: doc.id,
-  //       image: doc.data().image || "",
-  //       post: doc.data().post || "",
-  //       title: doc.data().title || "",
-  //       keyWords: doc.data().keyWords || [],
-  //       authorName: doc.data().authorName || "",
-  //       authorId: doc.data().authorId || "",
-  //       writtenOn: doc.data().writtenOn || "",
-  //       lastUpdated: doc.data().lastUpdated || "",
-  //       likeCount: doc.data().likeCount || [],
-  //       authorImage: doc.data().authorImage || "",
-  //     }));
-  //     setStoryList(newData);
-  //     setIsLoading(false);
-  //   };
-
-  //   fetchPosts();
-  // }, [userCtx?.user?.uid]);
-
   useEffect(() => {
     const fetchInitialPosts = async () => {
       try {
@@ -212,7 +182,7 @@ const TotalPosts = () => {
         </Button>
         <div className="totalPosts__posts">
           <Profile isClickable={false} />
-          {isLoading ? (
+          {isLoading || userCtx?.loading ? (
             <>
               <SkeletonLoaderStory />
               <SkeletonLoaderStory />
@@ -235,7 +205,7 @@ const TotalPosts = () => {
               </div>
             ))
           )}
-          {storyList.length === 0 && (
+          {storyList.length === 0 && !userCtx?.loading && (
             <Container addClass="totalPosts__noPost">
               Join the Conversation! - There are no posts yet. Share your
               thoughts and be the first to post.

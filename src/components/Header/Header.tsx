@@ -53,7 +53,7 @@ const Header = () => {
     <div
       className={`header ${isVisible ? " header-visible" : "header-hidden"}`}
     >
-      <h2 className="header__title" onClick={() => navigate("/storycorner")}>
+      <h2 className="header__title" onClick={() => navigate("/storycorner/")}>
         Story Corner
       </h2>
       <div className="header__action">

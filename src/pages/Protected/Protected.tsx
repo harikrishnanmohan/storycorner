@@ -5,7 +5,7 @@ import { Navigate } from "react-router-dom";
 const Protected = ({ children }: { children: ReactNode }) => {
   const UserCtx = useContext(UserContext);
 
-  if (UserCtx?.user) return children;
+  if (UserCtx?.user || UserCtx?.loading) return children;
   else return <Navigate to="/storycorner/login" />;
 };
 

@@ -40,7 +40,7 @@ const MyStory = () => {
                 <div className="myStory__interaction_title">
                   <Button
                     type="button"
-                    handleFunction={() => navigate("/storycorner")}
+                    handleFunction={() => navigate("/storycorner/")}
                     addClass="myStory__header_back"
                   >
                     <FontAwesomeIcon icon={faArrowLeft} />
