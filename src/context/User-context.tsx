@@ -1,4 +1,4 @@
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { ReactNode, createContext, useEffect, useState } from "react";
 import { auth } from "../firebaseConfig";
 
@@ -27,25 +27,27 @@ const UserContextProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
       if (firebaseUser) {
-        const userData = {
-          displayName: firebaseUser.displayName!,
-          email: firebaseUser.email!,
-          photoURL: firebaseUser.photoURL!,
+        setUser({
+          displayName: firebaseUser.displayName || "",
+          email: firebaseUser.email || "",
+          photoURL: firebaseUser.photoURL || "",
           uid: firebaseUser.uid,
-        };
-        setUser(userData);
+        });
       } else {
         setUser(null);
       }
       setLoading(false);
     });
+
     return () => unsubscribe();
   }, []);
 
   const login = (user: FirebaseUser) => {
     setUser(user);
   };
-  const logout = () => {
+
+  const logout = async () => {
+    await signOut(auth);
     setUser(null);
   };
 
