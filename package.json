@@ -1,5 +1,6 @@
 {
   "name": "storycorner",
+  "homepage": "https://harikrishnanmohan.github.io/storycorner/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,7 +8,9 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
@@ -17,6 +20,7 @@
     "dayjs": "^1.11.11",
     "dayjs-ext": "^2.2.0",
     "firebase": "^10.12.0",
+    "gh-pages": "^6.3.0",
     "image-to-base64": "^2.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
