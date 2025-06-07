@@ -2,19 +2,21 @@
 .login {
   display: flex;
   justify-content: space-around;
-  height: 87vh;
+  height: 100%;
   align-items: center;
   &__welcome {
     width: 40rem;
     &_title {
       margin-bottom: 1rem;
       font-weight: 300;
-      font-size: clamp(2rem, 3vw, 4rem);
+      font-size: clamp(1.7rem, 2.5vw, 3.5rem);
     }
     &_description {
       margin-bottom: 1rem;
       font-size: 20px;
       font-weight: 300;
+      line-height: 1.7;
+      font-size: clamp(1rem, 1vw, 1.2rem);
     }
     &_subTitle {
       font-size: 30px;

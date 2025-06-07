@@ -46,7 +46,7 @@
       background: $light;
       border-radius: $border-radius-10;
       padding: 1rem;
-      top: 28vh;
+      top: 24vh;
     }
     &_items {
       display: flex;
@@ -162,6 +162,7 @@
 @media (max-width: 995px) {
   .stories {
     padding: 2rem;
+    padding-bottom: 1rem;
     flex-direction: column;
     &__list {
       display: flex;

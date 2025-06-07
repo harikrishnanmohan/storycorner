@@ -9,13 +9,13 @@
   }
   &__name {
     font-weight: 500;
-    font-size: 18px;
+    font-size: 17px;
     width: max-content;
   }
   &__description {
     opacity: 0.7;
     width: max-content;
-    font-size: 15px;
+    font-size: clamp(0.8rem, 1vw, 1rem);
   }
 }
 .app__dark {

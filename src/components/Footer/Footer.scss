@@ -5,6 +5,8 @@
   align-items: center;
   padding: 1rem 4rem;
   background: $primary-color;
+  font-size: clamp(0.8rem, 1vw, 2rem);
+
   &__portfolio {
     color: $dark;
     text-decoration: none;
@@ -22,7 +24,8 @@
   .footer {
     padding: 1.5rem 1rem;
     align-items: flex-start;
-    &__link {
+    justify-content: space-between;
+    &__left {
       width: 50%;
     }
   }

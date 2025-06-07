@@ -22,6 +22,9 @@ html {
 .app {
   min-height: 100vh;
   background-color: $primary-bg-color;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   &__dark {
     background-color: $secondary-color;
     color: $primary-color;

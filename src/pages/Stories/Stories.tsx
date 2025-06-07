@@ -277,6 +277,8 @@ const Stories = () => {
     if (isSelected === index) {
       setIsSelected(null);
       setFilteredStories([]);
+      setIsFilterVisible(false);
+
       return;
     }
     setIsSelected(index);
@@ -300,6 +302,7 @@ const Stories = () => {
       authorImage: doc.data().authorImage || "",
     }));
     setFilteredStories(newData);
+    setIsFilterVisible(false);
   };
 
   const onFilter = (e: ChangeEvent<HTMLInputElement>) => {
@@ -316,12 +319,23 @@ const Stories = () => {
   };
 
   const divRef = useRef<HTMLDivElement>(null);
+  const slidbarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (divRef.current && !divRef.current.contains(event.target as Node)) {
+      if (
+        isFilterVisible &&
+        slidbarRef.current &&
+        !slidbarRef.current?.contains(event.target as Node)
+      )
         setIsFilterVisible(false);
-      }
+      if (
+        divRef.current &&
+        !divRef.current.contains(event.target as Node) &&
+        slidbarRef.current &&
+        !slidbarRef.current.contains(event.target as Node)
+      )
+        setIsFilterVisible(false);
     };
 
     document.addEventListener("mousedown", handleClickOutside);
@@ -492,6 +506,7 @@ const Stories = () => {
             className={`stories__filters_slider ${
               isFilterVisible ? "visible" : ""
             }`}
+            ref={slidbarRef}
           >
             <Profile isClickable={true} />
 

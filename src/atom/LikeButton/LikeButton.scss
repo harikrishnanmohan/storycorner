@@ -3,6 +3,14 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  &__count {
+    min-width: 0.8rem;
+    text-align: center;
+    cursor: pointer;
+    &:hover {
+      border-bottom: 1px solid #5e5e5e;
+    }
+  }
   &-button {
     color: $like-color-normal;
     cursor: pointer;
@@ -11,6 +19,47 @@
   &.clicked {
     .like-button {
       color: red;
+    }
+  }
+}
+.like_modal {
+  max-width: 300px;
+}
+.likes__modal {
+  margin: 0.5rem;
+  &_interaction {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    .button {
+      width: 6rem;
+    }
+    .closs-button {
+      width: auto;
+      margin-bottom: 0.5rem;
+    }
+  }
+  .like__users {
+    list-style: none;
+    overflow: scroll;
+    max-height: 25rem;
+    padding: 0rem;
+    .like__user {
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.5rem;
+      border-radius: $border-radius-10;
+      transition: all ease-in-out 0.3s;
+      &:hover {
+        background-color: $secondary-color;
+      }
+      &_photo {
+        border-radius: 50%;
+        height: 3rem;
+        width: 3rem;
+      }
     }
   }
 }
