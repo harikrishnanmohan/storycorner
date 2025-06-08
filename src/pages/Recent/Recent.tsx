@@ -45,6 +45,7 @@ const Recent = () => {
         writtenOn: doc.data().writtenOn || "",
         lastUpdated: doc.data().lastUpdated || "",
         likeCount: doc.data().likeCount || [],
+        likeCountById: doc.data().likeCount || [],
         authorImage: doc.data().authorImage || "",
       }));
       const sortedPosts = newData

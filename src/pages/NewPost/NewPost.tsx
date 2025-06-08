@@ -28,6 +28,7 @@ interface PostInfoType {
   authorId: string;
   writtenOn: string;
   likeCount: string[];
+  likeCountById: string[];
 }
 
 const SkeletonNewPost = () => {
@@ -207,6 +208,7 @@ export const NewPostForm = ({
         new Set(keyword.replaceAll(",", "").split(" ") ?? [""])
       ),
       likeCount: story?.likeCount || [],
+      likeCountById: story?.likeCountById || [],
       writtenOn: story?.writtenOn || date,
       lastUpdated: date,
       authorName: UserCtx?.user?.displayName ?? "",

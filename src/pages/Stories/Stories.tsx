@@ -52,7 +52,7 @@ export interface StoryListType {
 const Stories = () => {
   const [storyList, setStoryList] = useState<StoryListType[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [isLoadingFilter, setIsLoadingFilter] = useState<boolean>(true);
+  const [isLoadingFilter, setIsLoadingFilter] = useState<boolean>(false);
   const [showNotification, setShowNotification] = useState<boolean>(false);
   const [isNewPosts, setIsNewPosts] = useState<boolean>(false);
   const [isFilterVisible, setIsFilterVisible] = useState<boolean>(false);
