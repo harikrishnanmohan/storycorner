@@ -36,7 +36,7 @@ const Profile = ({ isClickable }: { isClickable?: boolean }) => {
       collectionRef,
       where("authorId", "==", userCtx.user.uid)
     );
-    console.log(isClickable);
+
     const unsubscribe = onSnapshot(userPostsQuery, (snapshot) => {
       const newData: StoryListType[] = snapshot.docs.map((doc) => ({
         id: doc.id,
@@ -49,6 +49,7 @@ const Profile = ({ isClickable }: { isClickable?: boolean }) => {
         writtenOn: doc.data().writtenOn || "",
         lastUpdated: doc.data().lastUpdated || "",
         likeCount: doc.data().likeCount || [],
+        likeCountById: doc.data().likeCount || [],
         authorImage: doc.data().authorImage || "",
       }));
       setStoryList(newData);

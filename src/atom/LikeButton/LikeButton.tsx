@@ -12,10 +12,12 @@ const LikeButton = ({
   likeCount,
   id,
   onLikePost,
+  onClick,
 }: {
   likeCount: string[];
   id: string;
   onLikePost: (id: string) => void;
+  onClick?: (id: string) => void;
 }) => {
   const [isLiked, setIsLiked] = useState<boolean>(false);
   const [isShowLiked, setIsShowLiked] = useState<boolean>(false);
@@ -52,12 +54,14 @@ const LikeButton = ({
     setTimeout(() => {
       setIsAnimating(false);
     }, 700);
-
+    onClick && onClick(id);
     const postRef = doc(fireStore, "posts", id);
     const postSnapshot = await getDoc(postRef);
     if (postSnapshot.exists()) {
       const currentLikeCount = postSnapshot.data().likeCount;
+      const currentLikeCountById = postSnapshot.data().likeCountById || [];
       let newLikeCount;
+      let newLikeCountById;
       if (currentLikeCount) {
         if (
           !currentLikeCount
@@ -72,11 +76,15 @@ const LikeButton = ({
               photoURL: userCtx?.user?.photoURL,
             },
           ];
+          newLikeCountById = [...currentLikeCountById, userCtx?.user?.uid];
           setIsLiked(true);
         } else {
           newLikeCount = currentLikeCount.filter(
             (element: { id: string; name: string }) =>
               element.id !== userCtx?.user?.uid
+          );
+          newLikeCountById = currentLikeCountById.filter(
+            (item: string) => item !== userCtx?.user?.uid
           );
           setIsLiked(false);
         }
@@ -89,10 +97,12 @@ const LikeButton = ({
             photoURL: userCtx?.user?.photoURL,
           },
         ];
+        newLikeCountById = [userCtx?.user?.uid];
       }
       setLike(newLikeCount);
       await updateDoc(postRef, {
         likeCount: newLikeCount,
+        likeCountById: newLikeCountById,
       });
     } else {
       onLikePost(id);

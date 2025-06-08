@@ -9,7 +9,6 @@
     justify-content: space-around;
     background: $primary-color;
     border-radius: $border-radius-10;
-    margin-bottom: 1rem;
     padding: 1rem;
     &__picture.skeleton {
       width: 6rem;
@@ -32,7 +31,6 @@
   background: $primary-color;
   padding: 1rem;
   border-radius: $border-radius-10;
-  margin-bottom: 1rem;
   position: relative;
   &.bg-image {
     background-image: url("../../assets/grey_background.jpg");

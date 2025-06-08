@@ -45,12 +45,14 @@ export interface StoryListType {
   writtenOn: string;
   lastUpdated: string;
   likeCount: string[];
+  likeCountById: string[];
   authorImage: string;
 }
 
 const Stories = () => {
   const [storyList, setStoryList] = useState<StoryListType[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoadingFilter, setIsLoadingFilter] = useState<boolean>(true);
   const [showNotification, setShowNotification] = useState<boolean>(false);
   const [isNewPosts, setIsNewPosts] = useState<boolean>(false);
   const [isFilterVisible, setIsFilterVisible] = useState<boolean>(false);
@@ -106,6 +108,7 @@ const Stories = () => {
           writtenOn: doc.data().writtenOn || "",
           lastUpdated: doc.data().lastUpdated || "",
           likeCount: doc.data().likeCount || [],
+          likeCountById: doc.data().likeCount || [],
           authorImage: doc.data().authorImage || "",
         }));
 
@@ -141,8 +144,9 @@ const Stories = () => {
           authorName: doc.data().authorName || "",
           authorId: doc.data().authorId || "",
           writtenOn: doc.data().writtenOn || "",
-          lastUpdated: doc.data().lastUpdated || 0,
+          lastUpdated: doc.data().lastUpdated || "",
           likeCount: doc.data().likeCount || [],
+          likeCountById: doc.data().likeCount || [],
           authorImage: doc.data().authorImage || "",
         }));
 
@@ -234,6 +238,7 @@ const Stories = () => {
             writtenOn: doc.data().writtenOn || "",
             lastUpdated: doc.data().lastUpdated || "",
             likeCount: doc.data().likeCount || [],
+            likeCountById: doc.data().likeCount || [],
             authorImage: doc.data().authorImage || "",
           }));
 
@@ -281,6 +286,7 @@ const Stories = () => {
 
       return;
     }
+    setIsLoadingFilter(true);
     setIsSelected(index);
     const collectionRef = collection(fireStore, "posts");
     const q = query(
@@ -299,10 +305,12 @@ const Stories = () => {
       writtenOn: doc.data().writtenOn || "",
       lastUpdated: doc.data().lastUpdated || "",
       likeCount: doc.data().likeCount || [],
+      likeCountById: doc.data().likeCount || [],
       authorImage: doc.data().authorImage || "",
     }));
     setFilteredStories(newData);
     setIsFilterVisible(false);
+    setIsLoadingFilter(false);
   };
 
   const onFilter = (e: ChangeEvent<HTMLInputElement>) => {
@@ -430,44 +438,11 @@ const Stories = () => {
             >
               <FontAwesomeIcon icon={faBars} title="Click to edit the post" />
             </div>
-            {isLoading ? (
-              <>
-                <SkeletonLoaderStory />
-                <SkeletonLoaderStory />
-                <SkeletonLoaderStory />
-              </>
-            ) : isSelected !== null ? (
-              filteredStories.length > 0 ? (
-                filteredStories.map((storyItem, index) => (
-                  <div
-                    key={storyItem.id}
-                    ref={
-                      index === storyList.length - 1
-                        ? lastStoryElementRef
-                        : null
-                    }
-                  >
-                    <MemoizedStory
-                      story={storyItem}
-                      onDelete={onDeletePost}
-                      onLikePost={onLikePost}
-                    />
-                  </div>
-                ))
-              ) : (
-                <>
-                  <SkeletonLoaderStory />
-                  <SkeletonLoaderStory />
-                  <SkeletonLoaderStory />
-                </>
-              )
-            ) : (
-              storyList.map((storyItem, index) => (
+            {(isSelected !== null ? filteredStories : storyList).map(
+              (storyItem, index, arr) => (
                 <div
                   key={storyItem.id}
-                  ref={
-                    index === storyList.length - 1 ? lastStoryElementRef : null
-                  }
+                  ref={index === arr.length - 1 ? lastStoryElementRef : null}
                 >
                   <MemoizedStory
                     story={storyItem}
@@ -475,9 +450,17 @@ const Stories = () => {
                     onLikePost={onLikePost}
                   />
                 </div>
-              ))
+              )
+            )}
+            {(isLoading || isLoadingFilter) && (
+              <>
+                <SkeletonLoaderStory />
+                <SkeletonLoaderStory />
+                <SkeletonLoaderStory />
+              </>
             )}
           </div>
+
           <div className="stories__filters">
             <div className="stories__filters_search">
               <Input

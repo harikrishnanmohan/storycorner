@@ -15,8 +15,26 @@
   &__posts {
     margin: 2rem auto;
     max-width: 70%;
-    .story {
-      margin-top: 1rem;
+    .totalPosts__tabs {
+      display: flex;
+      gap: 1rem;
+      .totalPosts__myPosts,
+      .totalPosts__likedPosts {
+        padding: 1rem 2rem;
+        background-color: $primary-color;
+        border-radius: $border-radius-10;
+        cursor: pointer;
+        color: $secondary-color;
+        margin: 1rem 0rem;
+      }
+      .totalPosts__myPosts,
+      .totalPosts__likedPosts {
+        transition: all ease-in-out 0.5s;
+        &.active {
+          margin-bottom: -0.5rem;
+          margin-top: 2rem;
+        }
+      }
     }
   }
   &__font {
@@ -50,6 +68,15 @@
   .totalPosts {
     &__noPost {
       background-color: $secondary-bg-color;
+    }
+    &__posts {
+      .totalPosts__tabs {
+        .totalPosts__myPosts,
+        .totalPosts__likedPosts {
+          background-color: $secondary-bg-color;
+          color: $primary-color;
+        }
+      }
     }
   }
 }

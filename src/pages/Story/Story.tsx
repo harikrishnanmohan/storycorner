@@ -39,6 +39,7 @@ const Story = ({
   showEdit,
   onDelete,
   onLikePost,
+  onClick,
 }: {
   story: {
     id: string;
@@ -50,12 +51,14 @@ const Story = ({
     writtenOn: string;
     lastUpdated: string;
     likeCount: string[];
+    likeCountById: string[];
     authorImage: string;
     authorId: string;
   };
   showEdit?: boolean;
   onDelete: (id: string) => void;
   onLikePost: (id: string) => void;
+  onClick?: (id: string) => void;
 }) => {
   const [isShowAll, setIsShowAll] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -70,18 +73,10 @@ const Story = ({
   const handleDeletePost = async () => {
     if (story.id) {
       await deleteDoc(doc(fireStore, "posts", story.id));
-      // setStoryList((prev) =>
-      //   prev.filter((story) => story.id !== storyId.current)
-      // );
       onDelete(story.id);
       setIsDeleteModalOpen(false);
     }
   };
-
-  // const onDelete = (id: string) => {
-  //   setIsDeleteModalOpen(true);
-  //   storyId.current = id;
-  // };
 
   const DeleteConfirmation = () => {
     if (story.id) {
@@ -205,6 +200,7 @@ const Story = ({
               likeCount={story.likeCount}
               id={story.id}
               onLikePost={onLikePost}
+              onClick={onClick}
             />
           </div>
         </div>
